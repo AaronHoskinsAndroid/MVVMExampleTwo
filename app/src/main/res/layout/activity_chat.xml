@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.activities.ChatActivity">
+
+    <data>
+        <variable
+            name="chatViewModel"
+            type="examples.aaronhoskins.com.mvvmexample.viewmodel.ChatViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChatMessagesList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMessageToSend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:afterTextChanged = "@{(editable) -> chatViewModel.afterMessageEntered(editable)}"
+                android:hint="Please Enter a Message to send"/>
+
+            <Button
+                android:id="@+id/btnSendMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="@{(v) -> chatViewModel.onSendMessageClicked(v)}"
+                android:text="SEND"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

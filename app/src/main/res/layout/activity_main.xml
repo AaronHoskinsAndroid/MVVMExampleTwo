@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.activities.MainActivity">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="examples.aaronhoskins.com.mvvmexample.viewmodel.UserLoginViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvLoginMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.loginMessage}"/>
+
+        <EditText
+            android:id="@+id/etUserEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:afterTextChanged="@{(editable) -> viewmodel.setUserEmail(editable)}"
+            android:hint="Please enter your email address"/>
+
+        <EditText
+            android:id="@+id/etUserPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:afterTextChanged="@{(editable) -> viewmodel.setUserPassword(editable)}"
+            android:hint="Please Enter your password"/>
+
+        <Button
+            android:id="@+id/btnLogIntoAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log Into Account"
+            android:onClick="@{(v) -> viewmodel.onLogInClicked(v)}"/>
+
+        <Button
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create a New Account"
+            android:onClick="@{(v) -> viewmodel.onLogInClicked(v)}"/>
+
+    </LinearLayout>
+
+</layout>
